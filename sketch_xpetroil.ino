@@ -20,15 +20,18 @@ void setup() {
 }
 
 void loop() {
-  // Lectura de los sensores
+  // Lectura del tiempo y los sensores
+  unsigned long tiempo = millis();
   float temp = leerSensorTemp();
   float presion = leerSensorPresion();
   float caudal = leerSensorCaudal();
   float aceleracion = leerSensorAceleracion();
   
   // Registro de los datos en la tarjeta SD
-  File dataFile = SD.open("data.txt", FILE_WRITE);
+  File dataFile = SD.open("data.csv", FILE_WRITE);
   if (dataFile) {
+    dataFile.print(tiempo);
+    dataFile.print(",");
     dataFile.print(temp);
     dataFile.print(",");
     dataFile.print(presion);
@@ -70,6 +73,7 @@ float leerSensorCaudal() {
 float leerSensorAceleracion() {
   int lectura = analogRead(sensorAceleracion);
   float voltaje = (lectura * 5.0) / 1023.0;
-  float aceleracion = voltaje / 0.1; // Sensor de aceleración tiene una sensibilidad de 0.1 V/g
+  float aceleracion = voltaje / 0.1; // Sensor detiene una sensibilidad de 0.1 V/g
   return aceleracion;
 }
+
