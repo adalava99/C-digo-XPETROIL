@@ -27,7 +27,7 @@ void loop() {
   float aceleracion = leerSensorAceleracion();
   
   // Registro de los datos en la tarjeta SD
-  File dataFile = SD.open("data.csv", FILE_WRITE);
+  File dataFile = SD.open("data.txt", FILE_WRITE);
   if (dataFile) {
     dataFile.print(temp);
     dataFile.print(",");
