@@ -43,7 +43,7 @@ void loop() {
     Serial.println("Error al abrir el archivo");
   }
   
-  delay(1000); // Espera 1 segundo antes de leer y registrar los datos nuevamente
+  delay(300000); // Espera 5 minutos antes de leer y registrar los datos nuevamente
 }
 
 // Funciones para la lectura de los sensores
@@ -63,13 +63,13 @@ float leerSensorPresion() {
 float leerSensorCaudal() {
   int lectura = analogRead(sensorCaudal);
   float voltaje = (lectura * 5.0) / 1023.0;
-  float caudal = voltaje / 5.0 * 100.0; // Suponiendo que el sensor de caudal tiene una salida de 0 a 5 voltios y mide un flujo máximo del 100%
+  float caudal = voltaje / 5.0 * 100.0; // Sensor de caudal tiene una salida de 0 a 5 voltios y mide un flujo máximo del 100%
   return caudal;
 }
 
 float leerSensorAceleracion() {
   int lectura = analogRead(sensorAceleracion);
   float voltaje = (lectura * 5.0) / 1023.0;
-  float aceleracion = voltaje / 0.1; // Suponiendo que el sensor de aceleración tiene una sensibilidad de 0.1 V/g
+  float aceleracion = voltaje / 0.1; // Sensor de aceleración tiene una sensibilidad de 0.1 V/g
   return aceleracion;
 }
